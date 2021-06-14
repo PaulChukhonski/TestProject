@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
+import java.util.Date;
 
 @RestController
 @Validated
@@ -35,7 +36,8 @@ public class MainController {
 
     @PostMapping(value = "/person", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Person> savePerson(@RequestBody @Valid Person person) {
-        if (personService.findById(person.getId()) != null) { return new ResponseEntity<>(HttpStatus.BAD_REQUEST); }
+        if (personService.findById(person.getId()) != null
+                || new Date().getTime() < person.getBirthdate().getTime()) { return new ResponseEntity<>(HttpStatus.BAD_REQUEST); }
         personService.saveOrUpdate(person);
         return new ResponseEntity<>(person, HttpStatus.OK);
     }
@@ -44,7 +46,10 @@ public class MainController {
     public ResponseEntity<Car> saveCar(@RequestBody @Valid Car car,
                                        @RequestParam("ownerId") @NotEmpty(message = "Id shouldn't be empty") Long id) {
         car.setPerson(personService.findById(id));
-        if (carService.findById(car.getId()) != null) { return new ResponseEntity<>(HttpStatus.BAD_REQUEST); }
+        if (carService.findById(car.getId()) != null
+                || new Date().getTime() - car.getPerson().getBirthdate().getTime() <= 567648000000L
+                || car.getHorsepower() <= 0
+                || !car.getModel().matches(".-.")) { return new ResponseEntity<>(HttpStatus.BAD_REQUEST); }
         carService.saveOrUpdate(car);
         return new ResponseEntity<>(car, HttpStatus.OK);
     }
