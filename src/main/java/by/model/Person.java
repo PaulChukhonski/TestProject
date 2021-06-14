@@ -2,6 +2,7 @@ package by.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -14,15 +15,15 @@ import java.util.List;
 @Table(name = "person")
 public class Person {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotEmpty
+    @NotEmpty(message = "Id shouldn't be empty")
     private Long id;
 
-    @NotEmpty
+    @NotEmpty(message = "Name shouldn't be empty")
     private String name;
 
-    @NotEmpty
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
+    @NotEmpty(message = "Birthdate shouldn't be empty")
+    @JsonFormat(pattern = "dd.MM.yyyy")
+    @DateTimeFormat(pattern = "dd.MM.yyyy")
     @Past
     private Date birthdate;
 

@@ -8,6 +8,6 @@ public interface CarService {
     void saveOrUpdate(Car car);
     List<Car> findAll();
     Car findById(Long id);
-    void delete(Long id);
+    void deleteAll();
     Long count();
 }

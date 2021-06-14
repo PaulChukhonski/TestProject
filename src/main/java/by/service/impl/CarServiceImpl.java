@@ -30,7 +30,7 @@ public class CarServiceImpl implements CarService {
 
     @Transactional
     @Override
-    public void delete(Long id) { carRepository.deleteById(id); }
+    public void deleteAll() { carRepository.deleteAll(); }
 
     @Transactional
     @Override

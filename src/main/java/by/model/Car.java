@@ -1,7 +1,7 @@
 package by.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonView;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
@@ -13,20 +13,19 @@ import javax.validation.constraints.NotEmpty;
 @Table(name = "car")
 public class Car {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotEmpty
+    @NotEmpty(message = "Id shouldn't be empty")
     private Long id;
 
-    @NotEmpty
+    @NotEmpty(message = "Model shouldn't be empty")
     private String model;
 
-    @Min(value = 1)
-    @NotEmpty
+    @Min(value = 0, message = "Horsepower should be greater than 0")
+    @NotEmpty(message = "Horsepower shouldn't be empty")
     private Integer horsepower;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ownerId")
-    @NotEmpty
+    @NotEmpty(message = "Person shouldn't be empty")
     @JsonIgnore
     private Person person;
 }

@@ -34,7 +34,7 @@ public class PersonServiceImpl implements PersonService {
 
     @Transactional
     @Override
-    public void delete(Long id) { personRepository.deleteById(id); }
+    public void deleteAll() { personRepository.deleteAll(); }
 
     @Transactional
     @Override

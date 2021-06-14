@@ -8,6 +8,6 @@ public interface PersonService {
     void saveOrUpdate(Person person);
     List<Person> findAll();
     Person findById(Long id);
-    void delete(Long id);
+    void deleteAll();
     Long count();
 }
