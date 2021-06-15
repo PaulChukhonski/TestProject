@@ -2,8 +2,8 @@ USE testProject;
 
 INSERT INTO person 
 VALUES
-(1, 'Pavel', '2000-04-01'),
-(2, 'John', '2005-07-25');
+(1, 'Pavel', '2000-04-01 04:00:00'),
+(2, 'John', '2005-07-25 04:00:00');
 
 INSERT INTO car 
 VALUES

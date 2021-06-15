@@ -4,7 +4,7 @@ USE testProject;
 CREATE TABLE person (
 	id BIGINT NOT NULL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
-	birthdate DATE NOT NULL
+	birthdate DATETIME NOT NULL
 );
 
 CREATE TABLE car (

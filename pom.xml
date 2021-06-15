@@ -129,5 +129,12 @@
       <artifactId>jackson-jaxrs-json-provider</artifactId>
       <version>2.12.3</version>
     </dependency>
+
+    <!-- Validator -->
+    <dependency>
+      <groupId>org.glassfish.main.bean-validator</groupId>
+      <artifactId>bean-validator</artifactId>
+      <version>5.1.0</version>
+    </dependency>
   </dependencies>
 </project>
