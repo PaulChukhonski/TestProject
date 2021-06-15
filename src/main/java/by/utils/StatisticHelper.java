@@ -13,6 +13,8 @@ import java.util.List;
 
 @Service
 public class StatisticHelper extends Helper {
+    private static final String vendorModelDelimiter = "-";
+
     @Autowired
     public StatisticHelper(PersonService personService, CarService carService, StatisticService statisticService) {
         this.personService = personService;
@@ -26,7 +28,7 @@ public class StatisticHelper extends Helper {
         statistic.setPersonCount(personService.count());
         statistic.setCarCount(carService.count());
         for(Car car: carService.findAll()) {
-            String vendor = car.getModel().split("-")[0];
+            String vendor = car.getModel().split(vendorModelDelimiter)[0];
             if(!vendors.contains(vendor)) vendors.add(vendor);
         }
         statistic.setUniqueVendorCount((long) vendors.size());

@@ -13,6 +13,10 @@ import java.util.Date;
 
 @Service
 public class PersonHelper extends Helper {
+    private static final String timeFix = " 04:00:00";
+    private static final String dateFormat = "dd.MM.yyyy";
+    private static final String dateFormatForTimeFix = "dd.MM.yyyy HH:mm:ss";
+
     @Autowired
     public PersonHelper(PersonService personService) {
         this.personService = personService;
@@ -22,15 +26,14 @@ public class PersonHelper extends Helper {
         return !bindingResult.hasErrors()
                 && personDto != null
                 && personService.findById(personDto.getId()) == null
-                && new Date().getTime() >= new SimpleDateFormat("dd.MM.yyyy").parse(personDto.getBirthdate()).getTime();
+                && new Date().getTime() >= new SimpleDateFormat(dateFormat).parse(personDto.getBirthdate()).getTime();
     }
 
     public Person createAndSavePerson(PersonDto personDto) throws ParseException {
         Person person = new Person();
         person.setId(personDto.getId());
         person.setName(personDto.getName());
-        person.setBirthdate(new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").parse(personDto.getBirthdate() + " 04:00:00"));
-        person.setCars(null);
+        person.setBirthdate(new SimpleDateFormat(dateFormatForTimeFix).parse(personDto.getBirthdate() + timeFix));
         personService.saveOrUpdate(person);
         return person;
     }
