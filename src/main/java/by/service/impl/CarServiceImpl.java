@@ -7,6 +7,7 @@ import by.repository.PersonRepository;
 import by.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class CarServiceImpl implements CarService {
@@ -19,9 +20,11 @@ public class CarServiceImpl implements CarService {
         this.personRepository = personRepository;
     }
 
+    @Transactional
     @Override
     public Car findById(Long id) { return carRepository.findById(id).orElse(null); }
 
+    @Transactional
     @Override
     public void deleteAll() { carRepository.deleteAll(); }
 
