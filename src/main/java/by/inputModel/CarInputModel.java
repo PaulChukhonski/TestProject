@@ -1,11 +1,11 @@
-package by.dto;
+package by.inputModel;
 
 import lombok.Data;
 
 import javax.validation.constraints.*;
 
 @Data
-public class CarDto {
+public class CarInputModel {
     @Min(1)
     @Max(Long.MAX_VALUE)
     @NotNull

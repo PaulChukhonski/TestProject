@@ -1,13 +1,12 @@
 package by.service;
 
+import by.inputModel.PersonInputModel;
 import by.model.Person;
 
-import java.util.List;
+import java.text.ParseException;
 
 public interface PersonService {
-    void saveOrUpdate(Person person);
-    List<Person> findAll();
     Person findById(Long id);
     void deleteAll();
-    Long count();
+    Person createAndSavePerson(PersonInputModel personInputModel) throws ParseException;
 }

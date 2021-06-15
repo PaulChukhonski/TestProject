@@ -1,11 +1,11 @@
-package by.dto;
+package by.inputModel;
 
 import lombok.Data;
 
 import javax.validation.constraints.*;
 
 @Data
-public class PersonDto {
+public class PersonInputModel {
     @Min(1)
     @Max(Long.MAX_VALUE)
     @NotNull
